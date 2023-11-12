@@ -7,10 +7,10 @@
 
 int _printf(const char *format, ...)
 {
-	va_list args;
+	va_list arg_list;
 	int i = 0;
 
-	va_start(args, format);
+	va_start(arg_list, format);
 	for (; *format; format++)
 	{
 		if (*format == '%')
@@ -20,12 +20,12 @@ int _printf(const char *format, ...)
 			break;
 		if (*format == 'c')
 		{
-			putchar(va_arg(args, int));
+			putchar(va_arg(arg_list, int));
 			i++;
 		}
 		else if (*format == 's')
 		{
-			const char *string = va_arg(args, const char *);
+			const char *string = va_arg(arg_list, const char *);
 
 			for (; *string; string++)
 			{
@@ -45,6 +45,6 @@ int _printf(const char *format, ...)
 			i++;
 		}
 	}
-	va_end(args);
+	va_end(arg_list);
 	return (i);
 }
