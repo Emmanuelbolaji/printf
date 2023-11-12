@@ -11,12 +11,13 @@ int _printf(const char *format, ...)
 	int i = 0;
 
 	va_start(args, format);
-
 	for (; *format; format++)
 	{
 		if (*format == '%')
 		{
 			format++;
+		if (*format == '\0')
+			break;
 		if (*format == 'c')
 		{
 			putchar(va_arg(args, int));
