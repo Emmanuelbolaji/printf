@@ -1,34 +1,35 @@
-#include <stdarg.h>
-#include <stdio.h>
 #include "main.h"
 
-int _printf(const char *format, ...) {
-    va_list args;
-    int count = 0;
-    va_start(args, format);
- 
+int _printf(const char *format, ...)
+{
+	va_list args;
+	int i = 0;
 
-    while (*format) {
-        if (*format == '%') {
-            format++; 
-            switch (*format) {
-                case 'c':
-                    putchar(va_arg(args, int));
-                    count++;
+	va_start(args, format);
+
+	for (; *format; format++)
+	{
+		if (*format == '%')
+		{
+			format++;
+			switch (*format)
+			{
+				case 'c':
+					putchar(va_arg(args, int));
+                    i++;
                     break;
                 case 's':
                     {
-                        const char *str = va_arg(args, const char *);
-                        while (*str) {
-                            putchar(*str);
-                            count++;
-                            str++;
+                        const char *string = va_arg(args, const char *);
+                        for (;*string; string++) {
+                            putchar(*string);
+                            i++;
                         }
                     }
                     break;
                 case '%':
-                    putchar('%');
-                    count++;
+                   putchar('%');
+                    i++;
                     break;
                 default:
                   
@@ -36,13 +37,9 @@ int _printf(const char *format, ...) {
             }
         } else {
             putchar(*format);
-            count++;
-        }
-
-        format++;
+            i++;
+      }
     }
-
-    va_end(args);
-
-    return count;
+	va_end(args);
+	return i;
 }
