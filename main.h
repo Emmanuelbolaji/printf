@@ -8,6 +8,11 @@
 #include <unistd.h>
 
 int _printf(const char *format, ...);
-int run_putr(char c)
+int c_print(va_list arg_list);
+int s_print(va_list arg_list);
+int print_37(void);
 
+int run_putr(char c);
+int _strlen(char *s);
+int _strlenconst(const char *s);
 #endif
