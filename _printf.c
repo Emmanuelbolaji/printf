@@ -20,7 +20,7 @@ int _printf(const char *format, ...)
 			break;
 		if (*format == 'c')
 		{
-			putchar(va_arg(arg_list, int));
+			run_putr(va_arg(arg_list, int));
 			i++;
 		}
 		else if (*format == 's')
@@ -29,19 +29,19 @@ int _printf(const char *format, ...)
 
 			for (; *string; string++)
 			{
-				putchar(*string);
+				run_putr(*string);
 				i++;
 			}
 		}
 		else if (*format == '%')
 		{
-			putchar('%');
+			run_putr('%');
 			i++;
 		}
 		}
 		else
 		{
-			putchar(*format);
+			run_putr(*format);
 			i++;
 		}
 	}
